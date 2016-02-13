@@ -1,5 +1,7 @@
 package mqttclient;
 
+import java.io.UnsupportedEncodingException;
+
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -19,7 +21,12 @@ public class Main {
          Publisher pub = new Publisher(client);
          
          while(true){
-        	 pub.publishData();        	 
+        	 try {
+				pub.publishData();
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}        	 
          }
 	}
 

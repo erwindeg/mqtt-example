@@ -14,6 +14,7 @@ public class MainVerticle extends AbstractVerticle {
 		JsonObject config = new JsonObject().put("brokers", new JsonArray().add(new JsonObject().put("tcp_port", 1883)));
 		DeploymentOptions options = new DeploymentOptions().setConfig(config);
 		vertx.deployVerticle(new MQTTBroker(),options);
-		vertx.deployVerticle(new LocationLogger());
+		vertx.deployVerticle(new MQTTMessageTranslator());
+		vertx.deployVerticle(new WebVerticle());
 	}
 }
